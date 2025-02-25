@@ -1,8 +1,10 @@
-package Practica1;
+package es.uji.al439012.csv;
+
+import es.uji.al439012.table.Row;
+import es.uji.al439012.table.Table;
 
 import java.io.*;
 import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

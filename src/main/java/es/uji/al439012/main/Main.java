@@ -1,4 +1,7 @@
-package Practica1;
+package es.uji.al439012.main;
+
+import es.uji.al439012.csv.CSV;
+import es.uji.al439012.table.Table;
 
 import java.io.IOException;
 public class Main {

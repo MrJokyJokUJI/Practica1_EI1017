@@ -1,4 +1,4 @@
-package Practica1;
+package es.uji.al439012.table;
 
 import java.util.List;
 import java.util.stream.Collectors;
