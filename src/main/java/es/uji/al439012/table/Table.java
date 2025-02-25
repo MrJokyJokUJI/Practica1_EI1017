@@ -11,6 +11,11 @@ public class Table {
         this.headers = headers;
         this.rows = rows;
     }
+    public Table(List<String> headers ) {
+        this.headers = headers;
+        this.rows = null;
+    }
+
 
     public Row getRowAt(int index) {
         return rows.get(index);

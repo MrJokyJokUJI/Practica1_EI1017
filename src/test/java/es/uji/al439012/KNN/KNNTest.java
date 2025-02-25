@@ -1,8 +1,12 @@
 // TODO: Reemplazar por el nombre de tu paquete
-package es.uji.al439012.main;
+package es.uji.al439012.KNN;
 
 // TODO: Reemplazar por los imports de tu proyecto
 import es.uji.al439012.csv.CSV;
+import es.uji.al439012.table.TableWithLabels;
+
+
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

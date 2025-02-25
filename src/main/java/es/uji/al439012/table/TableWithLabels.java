@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TableWithLabels extends Table {
+public class TableWithLabels extends Table{
     private Map<String, Integer> labelsToIndex;
 
     public TableWithLabels(List<String> headers) {
@@ -30,4 +30,10 @@ public class TableWithLabels extends Table {
 
         super.rows.add(row);
     }
+
+
 }
+
+
+
+
