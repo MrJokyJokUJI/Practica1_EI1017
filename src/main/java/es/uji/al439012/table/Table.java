@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Table {
     private List<String> headers;
-    private List<Row> rows;
+    List<Row> rows;
 
     public Table(List<String> headers, List<Row> rows) {
         this.headers = headers;

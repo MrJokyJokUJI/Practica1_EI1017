@@ -3,7 +3,6 @@ package es.uji.al439012.main;
 
 // TODO: Reemplazar por los imports de tu proyecto
 import es.uji.al439012.csv.CSV;
-import es.uji.al439012.table.TableWithLabels;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +14,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class KNNTest {
 
