@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class KNNTest {
 
     private KNN knn;

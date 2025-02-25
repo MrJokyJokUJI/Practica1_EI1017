@@ -38,13 +38,13 @@ class TableTest {
         // TODO: Descomenta/comenta la opcion que uses/no uses.
 
         //---(1) Setter y addRow---
-        table = new Table();
-        table.setHeaders(headers);
-        rows.forEach(row -> table.addRow(row));
+        //table = new Table();
+        //table.setHeaders(headers);
+        //rows.forEach(row -> table.addRow(row));
         //-------------------------
 
         //---(2) Inyeccion por constructor---
-        //table = new Table(headers, rows);
+        table = new Table(headers, rows);
         //-----------------------------------
     }
 
