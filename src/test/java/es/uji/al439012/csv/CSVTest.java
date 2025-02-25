@@ -3,6 +3,8 @@ package es.uji.al439012.csv;
 
 // TODO: Reemplazar por los imports de tu proyecto
 import es.uji.al439012.table.Table;
+import es.uji.al439012.table.TableWithLabels;
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

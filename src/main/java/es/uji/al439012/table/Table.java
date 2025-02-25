@@ -21,16 +21,26 @@ public class Table {
         return rows.get(index);
     }
 
+    public void setHeaders(List<String> headers) {
+        this.headers = headers;
+    }
     public List<Double> getColumnAt(int index) {
         return rows.stream()
                 .map(row -> row.getData().get(index))
                 .collect(Collectors.toList());
     }
-
+    public List<String> getHeaders() {
+        return headers;
+    }
     public void showTable() {
         System.out.println(headers);
         for (Row row : rows) {
             System.out.println(row);
         }
+    }
+    public int getRowCount() {
+        return rows.size();
+
+
     }
 }

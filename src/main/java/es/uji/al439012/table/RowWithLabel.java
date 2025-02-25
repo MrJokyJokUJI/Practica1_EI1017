@@ -1,5 +1,4 @@
 package es.uji.al439012.table;
-
 import java.util.List;
 
 public class RowWithLabel extends Row {
@@ -18,4 +17,6 @@ public class RowWithLabel extends Row {
     public String toString() {
         return super.toString() + ", label=" + label;
     }
+
+
 }
