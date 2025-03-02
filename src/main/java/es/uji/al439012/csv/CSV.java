@@ -49,9 +49,11 @@ public class CSV {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line = br.readLine();
             if (line != null) {
-                List<String> headers = List.of(line.split(","));
+                List<String> headers = new ArrayList<>(Arrays.asList(line.split(","))); // Lista modificable
+                headers.remove(headers.size() - 1); // Quitar el último elemento
                 table = new TableWithLabels(headers);
             }
+
 
             while ((line = br.readLine()) != null) {
                 System.out.println("Línea CSV: " + line);  // Depuración
