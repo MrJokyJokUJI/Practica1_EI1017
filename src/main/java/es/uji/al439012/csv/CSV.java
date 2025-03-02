@@ -42,23 +42,34 @@ public class CSV {
 
     public TableWithLabels readTableWithLabels(String irisFile) {
         TableWithLabels table = null;
-        try (BufferedReader br = new BufferedReader(new FileReader(irisFile))) {
+        try {
+            String filePath = getClass().getClassLoader().getResource(irisFile).toURI().getPath();
+            System.out.println("Ruta del archivo: " + filePath);
+
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
             String line = br.readLine();
             if (line != null) {
                 List<String> headers = List.of(line.split(","));
                 table = new TableWithLabels(headers);
             }
+
             while ((line = br.readLine()) != null) {
+                System.out.println("Línea CSV: " + line);  // Depuración
+
                 String[] parts = line.split(",");
                 List<Double> data = new ArrayList<>();
+
                 for (int i = 0; i < parts.length - 1; i++) {
                     data.add(Double.parseDouble(parts[i]));
                 }
-                String label = parts[parts.length - 1];
+
+                String label = parts[parts.length - 1].trim();
                 RowWithLabel row = new RowWithLabel(data, label);
                 table.addRow(row);
             }
-        } catch (IOException e) {
+
+            br.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return table;

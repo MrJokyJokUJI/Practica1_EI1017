@@ -20,13 +20,14 @@ public class TableWithLabels extends Table{
         super(headers);
         this.labelsToIndex = new HashMap<>();
         this.rows = new ArrayList<>(rows); // Asegura que las filas sean del tipo correcto
+        for (RowWithLabel row : rows) {
+            addRow(row); // Añadimos las filas y actualizamos el mapa de etiquetas
+        }
     }
     @Override
     public RowWithLabel getRowAt(int index) {
         return (RowWithLabel) super.getRowAt(index);
     }
-
-
     public Integer getLabelAsInteger(String label) {
         return labelsToIndex.get(label);
     }

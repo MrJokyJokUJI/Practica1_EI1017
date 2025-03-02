@@ -1,5 +1,5 @@
 package es.uji.al439012.KNN;
-/*nigger*/
+
 import es.uji.al439012.table.RowWithLabel;
 import es.uji.al439012.table.TableWithLabels;
 
@@ -9,11 +9,21 @@ public class KNN {
     private TableWithLabels trainingData;
 
     public void train(TableWithLabels data) {
+        if (data == null || data.getRowCount() == 0) {
+            throw new IllegalArgumentException("Los datos de entrenamiento no son válidos.");
+        }
+
         this.trainingData = data;
+        System.out.println("Entrenamiento completado. Total de filas: " + data.getRowCount());
+
+        for (int i = 0; i < data.getRowCount(); i++) {
+            RowWithLabel row = data.getRowAt(i);
+            System.out.println("Fila " + i + ": " + row + " -> Etiqueta: " + row.getLabel());
+        }
     }
 
     public Integer estimate(List<Double> sample) {
-        if (trainingData == null || trainingData.getRowAt(0) == null) {
+        if (trainingData == null || trainingData.getRowCount() == 0) {
             throw new IllegalStateException("El modelo KNN no ha sido entrenado.");
         }
 
@@ -22,6 +32,11 @@ public class KNN {
 
         for (int i = 0; i < trainingData.getRowCount(); i++) {
             RowWithLabel row = trainingData.getRowAt(i);
+            if (row == null) {
+                System.err.println("Fila nula en índice: " + i);
+                continue;
+            }
+
             double distance = euclideanDistance(sample, row.getData());
             if (distance < minDistance) {
                 minDistance = distance;
@@ -29,7 +44,17 @@ public class KNN {
             }
         }
 
-        return closestRow != null ? trainingData.getLabelAsInteger(closestRow.getLabel()) : null;
+        if (closestRow != null) {
+            String label = closestRow.getLabel();
+            Integer labelAsInteger = trainingData.getLabelAsInteger(label);
+
+            if (labelAsInteger == null) {
+                throw new IllegalStateException("Etiqueta no encontrada: " + label);
+            }
+            return labelAsInteger;
+        }
+
+        return null;
     }
 
     private double euclideanDistance(List<Double> a, List<Double> b) {
