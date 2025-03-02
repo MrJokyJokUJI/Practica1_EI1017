@@ -1,5 +1,6 @@
 package es.uji.al439012.table;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,10 +26,13 @@ public class Table {
         this.headers = headers;
     }
     public List<Double> getColumnAt(int index) {
-        return rows.stream()
-                .map(row -> row.getData().get(index))
-                .collect(Collectors.toList());
+        List<Double> column = new ArrayList<>();
+        for (Row row : rows) {
+            column.add(row.getData().get(index));
+        }
+        return column;
     }
+
     public List<String> getHeaders() {
         return headers;
     }

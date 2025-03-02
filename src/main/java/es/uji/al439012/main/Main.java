@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             CSV csv = new CSV();
-            Table table = csv.readTable("milles_dollars.csv");
+            Table table = csv.readTable("miles_dollars.csv");
 
             System.out.println("Tabla cargada desde CSV:");
             table.showTable();
