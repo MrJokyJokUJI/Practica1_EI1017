@@ -19,11 +19,13 @@ public class TableWithLabels extends Table{
     public TableWithLabels(List<String> headers, List<RowWithLabel> rows) {
         super(headers);
         this.labelsToIndex = new HashMap<>();
-        this.rows = new ArrayList<>(rows); // Asegura que las filas sean del tipo correcto
+        this.rows = new ArrayList<>(); // Asegura que rows esté inicializado
+
         for (RowWithLabel row : rows) {
-            addRow(row); // Añadimos las filas y actualizamos el mapa de etiquetas
+            addRow(row);
         }
     }
+
     @Override
     public RowWithLabel getRowAt(int index) {
         return (RowWithLabel) super.getRowAt(index);
