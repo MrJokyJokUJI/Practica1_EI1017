@@ -19,7 +19,7 @@ public class TableWithLabels extends Table{
     public TableWithLabels(List<String> headers, List<RowWithLabel> rows) {
         super(headers);
         this.labelsToIndex = new HashMap<>();
-        this.rows = new ArrayList<>(rows); // Asegura que las filas sean del tipo correcto
+        this.rows = new ArrayList<>(); // Asegura que las filas sean del tipo correcto
         for (RowWithLabel row : rows) {
             addRow(row); // Añadimos las filas y actualizamos el mapa de etiquetas
         }
