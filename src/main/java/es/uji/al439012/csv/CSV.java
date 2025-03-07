@@ -56,7 +56,6 @@ public class CSV {
 
 
             while ((line = br.readLine()) != null) {
-                System.out.println("Línea CSV: " + line);  // Depuración
 
                 String[] parts = line.split(",");
                 List<Double> data = new ArrayList<>();
