@@ -54,7 +54,7 @@ public class KMeans implements Algorithm<Table>{
         }
     }
 
-    public int estimate(List<Double> dataPoint) {
+    public Integer estimate(List<Double> dataPoint) {
         return getNearestCentroid(dataPoint);
     }
 
