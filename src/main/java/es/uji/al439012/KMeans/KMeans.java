@@ -4,8 +4,9 @@ import es.uji.al439012.excepciones.InvalidClusterNumberException;
 import es.uji.al439012.table.Table;
 import es.uji.al439012.algorithm.Algorithm;
 import java.util.*;
+import java.util.stream.Collectors;
 
-public class KMeans implements Algorithm<Table>{
+public class KMeans implements Algorithm<Table> {
     private int numClusters;
     private int numIterations;
     private Random random;
@@ -26,28 +27,36 @@ public class KMeans implements Algorithm<Table>{
         // Inicializar centroides aleatorios
         List<List<Double>> rows = new ArrayList<>();
         for (int i = 0; i < data.getRowCount(); i++) {
-            rows.add(data.getRowAt(i).getData());
+            rows.add(new ArrayList<>(data.getRowAt(i).getData())); // Deep copy
         }
         Collections.shuffle(rows, random);
-        centroids = rows.subList(0, numClusters);
+        centroids = new ArrayList<>(rows.subList(0, numClusters)); // Proper deep copy
 
         // Iteraciones para actualizar centroides
         for (int i = 0; i < numIterations; i++) {
-            List<List<Double>> newCentroids = new ArrayList<>(Collections.nCopies(numClusters, null));
+            List<List<Double>> newCentroids = new ArrayList<>();
             int[] clusterSizes = new int[numClusters];
-            List<List<Double>> sumCoordinates = new ArrayList<>(Collections.nCopies(numClusters, new ArrayList<>(Collections.nCopies(rows.get(0).size(), 0.0))));
+            List<List<Double>> sumCoordinates = new ArrayList<>();
 
+            // Initialize sumCoordinates lists
+            for (int j = 0; j < numClusters; j++) {
+                sumCoordinates.add(new ArrayList<>(Collections.nCopies(rows.get(0).size(), 0.0)));
+                newCentroids.add(null);
+            }
+
+            // Assign points to nearest centroid and accumulate sum
             for (List<Double> row : rows) {
                 int cluster = getNearestCentroid(row);
                 clusterSizes[cluster]++;
                 addCoordinates(sumCoordinates.get(cluster), row);
             }
 
+            // Calculate new centroids
             for (int j = 0; j < numClusters; j++) {
                 if (clusterSizes[j] > 0) {
                     newCentroids.set(j, averageCoordinates(sumCoordinates.get(j), clusterSizes[j]));
                 } else {
-                    newCentroids.set(j, centroids.get(j));
+                    newCentroids.set(j, new ArrayList<>(centroids.get(j))); // Keep previous centroid
                 }
             }
             centroids = newCentroids;
@@ -55,6 +64,9 @@ public class KMeans implements Algorithm<Table>{
     }
 
     public Integer estimate(List<Double> dataPoint) {
+        if (centroids.isEmpty()) {
+            throw new IllegalStateException("Model has not been trained yet.");
+        }
         return getNearestCentroid(dataPoint);
     }
 
@@ -87,11 +99,6 @@ public class KMeans implements Algorithm<Table>{
     }
 
     private List<Double> averageCoordinates(List<Double> sum, int count) {
-        List<Double> average = new ArrayList<>();
-        for (Double value : sum) {
-            average.add(value / count);
-        }
-        return average;
+        return sum.stream().map(val -> val / count).collect(Collectors.toList());
     }
 }
-
