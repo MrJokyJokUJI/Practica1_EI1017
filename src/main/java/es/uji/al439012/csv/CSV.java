@@ -14,35 +14,34 @@ import java.util.List;
 
 public class CSV {
     public Table readTable(String fileName) throws IOException {
+
+        String filePath = null;
         try {
-            String filePath = getClass().getClassLoader().getResource(fileName).toURI().getPath();
+            filePath = getClass().getClassLoader().getResource(fileName).toURI().getPath();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
 
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
-            String line = br.readLine();
-            List<String> headers = Arrays.asList(line.split(","));
-            List<Row> rows = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line = br.readLine();
+        List<String> headers = Arrays.asList(line.split(","));
+        List<Row> rows = new ArrayList<>();
 
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                List<Double> data = new ArrayList<>();
+        while ((line = br.readLine()) != null) {
+            String[] values = line.split(",");
+            List<Double> data = new ArrayList<>();
 
-                for (String value : values) {
-                    data.add(Double.parseDouble(value));
-                }
-
-                rows.add(new Row(data));
+            for (String value : values) {
+                data.add(Double.parseDouble(value));
             }
 
-            br.close();
-            return new Table(headers, rows);
-
-            // SVEN: generalmente, no se recomenda capturar un tipo de excepción, solo para lanzar otra.
-        } catch (URISyntaxException | NullPointerException e) {
-            throw new IOException("Error al obtener el archivo CSV: " + fileName, e);
+            rows.add(new Row(data));
         }
+
+        br.close();
+        return new Table(headers, rows);
     }
 
-    // SVEN: consistencia.. no es lógico que readTable lanza una excepción, pero readTableWithLabels no.
     public TableWithLabels readTableWithLabels(String irisFile) {
         TableWithLabels table = null;
         try {

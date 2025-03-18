@@ -41,11 +41,6 @@ public class KNN {
 
         for (int i = 0; i < trainingData.getRowCount(); i++) {
             RowWithLabel row = trainingData.getRowAt(i);
-            // SVEN: ciudado, este "if" ejecuta en cada iteración... realmente, es necesario? Podría ser "row" null?
-            if (row == null) {
-                System.err.println("Fila nula en índice: " + i);
-                continue;
-            }
 
             double distance = euclideanDistance(sample, row.getData());
             if (distance < minDistance) {
@@ -59,10 +54,6 @@ public class KNN {
             String label = closestRow.getLabel();
             Integer labelAsInteger = trainingData.getLabelAsInteger(label);
 
-            // SVEN: otra vez...
-            if (labelAsInteger == null) {
-                throw new IllegalStateException("Etiqueta no encontrada: " + label);
-            }
             return labelAsInteger;
         }
 
