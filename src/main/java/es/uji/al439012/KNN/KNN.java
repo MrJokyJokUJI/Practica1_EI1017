@@ -9,12 +9,14 @@
 
 package es.uji.al439012.KNN;
 
+
+import es.uji.al439012.algorithm.Algorithm;
 import es.uji.al439012.table.RowWithLabel;
 import es.uji.al439012.table.TableWithLabels;
 
 import java.util.List;
 
-public class KNN {
+public class KNN implements Algorithm<TableWithLabels> {
     private TableWithLabels trainingData;
 
     public void train(TableWithLabels data) {
