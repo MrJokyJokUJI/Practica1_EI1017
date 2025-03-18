@@ -1,3 +1,5 @@
+// COMENTADO
+
 package es.uji.al439012.table;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class TableWithLabels extends Table{
         return labelsToIndex.get(label);
     }
 
+    // SVEN: no es consistente tener aquí un "addRow", pero en Table no.
     public void addRow(RowWithLabel row) {
         String label = row.getLabel();
 
@@ -39,11 +42,17 @@ public class TableWithLabels extends Table{
             labelsToIndex.put(label, labelsToIndex.size());
         }
 
+        // si tienes un addRow en Table, aquí lo podrías llamar
         super.rows.add(row);
     }
 
 
 }
+
+
+
+
+
 
 
 

@@ -1,3 +1,5 @@
+// COMENTADO
+
 package es.uji.al439012.table;
 
 import java.util.ArrayList;
@@ -12,6 +14,9 @@ public class Table {
         this.headers = headers;
         this.rows = rows;
     }
+
+    // SVEN: tener este constructor, sín una manera de añadir un row (addRow), no tiene mucho sentido.
+    // Significa que podemos crear un Table en lo cual no podemos añadir nada.
     public Table(List<String> headers ) {
         this.headers = headers;
         this.rows = null;
@@ -22,6 +27,8 @@ public class Table {
         return rows.get(index);
     }
 
+    // Un detalle: como todos los constructores tienen "headers" como argumento (en otras palabras, es obligatorio establecer los headers),
+    // realmente no hace falta este "setHeaders"
     public void setHeaders(List<String> headers) {
         this.headers = headers;
     }
