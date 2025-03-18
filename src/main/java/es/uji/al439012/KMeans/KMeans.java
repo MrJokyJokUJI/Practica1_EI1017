@@ -2,10 +2,10 @@ package es.uji.al439012.KMeans;
 
 import es.uji.al439012.excepciones.InvalidClusterNumberException;
 import es.uji.al439012.table.Table;
-
+import es.uji.al439012.algorithm.Algorithm;
 import java.util.*;
 
-public class KMeans {
+public class KMeans implements Algorithm<Table>{
     private int numClusters;
     private int numIterations;
     private Random random;
