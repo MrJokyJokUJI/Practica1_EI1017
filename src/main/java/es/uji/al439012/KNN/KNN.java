@@ -1,3 +1,12 @@
+// COMENTADO
+//
+// APTO
+//
+// - ver comentarios detallados en el código
+// - es necesario comprobar en tantos lugares si un valor on es null? (ver comentarios en código)
+// - cuidado con la consistencia (ver comentarios en código)
+// - Generalmente buena solución pero cuidado con los detalles
+
 package es.uji.al439012.KNN;
 
 import es.uji.al439012.table.RowWithLabel;
@@ -32,6 +41,7 @@ public class KNN {
 
         for (int i = 0; i < trainingData.getRowCount(); i++) {
             RowWithLabel row = trainingData.getRowAt(i);
+            // SVEN: ciudado, este "if" ejecuta en cada iteración... realmente, es necesario? Podría ser "row" null?
             if (row == null) {
                 System.err.println("Fila nula en índice: " + i);
                 continue;
@@ -44,10 +54,12 @@ public class KNN {
             }
         }
 
+        // SVEN: otra vez: es necesario esto? Es posible que closestRow sea null?
         if (closestRow != null) {
             String label = closestRow.getLabel();
             Integer labelAsInteger = trainingData.getLabelAsInteger(label);
 
+            // SVEN: otra vez...
             if (labelAsInteger == null) {
                 throw new IllegalStateException("Etiqueta no encontrada: " + label);
             }

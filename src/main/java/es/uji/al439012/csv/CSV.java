@@ -1,3 +1,4 @@
+// COMENTADO
 package es.uji.al439012.csv;
 
 import es.uji.al439012.table.Row;
@@ -35,11 +36,13 @@ public class CSV {
             br.close();
             return new Table(headers, rows);
 
+            // SVEN: generalmente, no se recomenda capturar un tipo de excepción, solo para lanzar otra.
         } catch (URISyntaxException | NullPointerException e) {
             throw new IOException("Error al obtener el archivo CSV: " + fileName, e);
         }
     }
 
+    // SVEN: consistencia.. no es lógico que readTable lanza una excepción, pero readTableWithLabels no.
     public TableWithLabels readTableWithLabels(String irisFile) {
         TableWithLabels table = null;
         try {
