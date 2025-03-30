@@ -10,7 +10,9 @@ import org.junit.platform.suite.api.SuiteDisplayName;
 @SelectPackages({
         "es.uji.al439012.csv",
         "es.uji.al439012.KNN",
-        "es.uji.al439012.table"
+        "es.uji.al439012.table",
+        "es.uji.al439012.KMeans",
+        "es.uji.al439012.Suite"
 })
 @IncludeClassNamePatterns(".*Test")
 public class TestSuite {
