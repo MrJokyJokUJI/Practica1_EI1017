@@ -1,5 +1,5 @@
 // TODO: Reemplazar por el nombre de tu paquete
-package es.uji.al439012.KNN;
+package es.uji.al439012.knn;
 
 // TODO: Reemplazar por los imports de tu proyecto
 import es.uji.al439012.csv.CSV;

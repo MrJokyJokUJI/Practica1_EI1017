@@ -7,7 +7,7 @@
 // - cuidado con la consistencia (ver comentarios en código)
 // - Generalmente buena solución pero cuidado con los detalles
 
-package es.uji.al439012.KNN;
+package es.uji.al439012.knn;
 
 
 import es.uji.al439012.algorithm.Algorithm;

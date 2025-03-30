@@ -15,8 +15,8 @@ import java.util.Scanner;
 import es.uji.al439012.table.Table;
 import es.uji.al439012.algorithm.Algorithm;
 import es.uji.al439012.csv.CSV;
-import es.uji.al439012.KMeans.KMeans;
-import es.uji.al439012.KNN.KNN;
+import es.uji.al439012.kmeans.KMeans;
+import es.uji.al439012.knn.KNN;
 import es.uji.al439012.excepciones.LikedItemNotFoundException;
 import es.uji.al439012.RecSys.RecSys;
 

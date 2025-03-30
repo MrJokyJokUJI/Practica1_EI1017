@@ -14,7 +14,6 @@ public class TableWithLabels extends Table{
     public TableWithLabels(List<String> headers) {
         super(headers);
         this.labelsToIndex = new HashMap<>();
-        this.rows = new ArrayList<>();
     }
 
     // Nuevo constructor que permite inyección directa de filas

@@ -19,7 +19,7 @@ public class Table {
     // Significa que podemos crear un Table en lo cual no podemos añadir nada.
     public Table(List<String> headers ) {
         this.headers = headers;
-        this.rows = null;
+        this.rows = new ArrayList<>();
     }
 
 
@@ -27,11 +27,6 @@ public class Table {
         return rows.get(index);
     }
 
-    // Un detalle: como todos los constructores tienen "headers" como argumento (en otras palabras, es obligatorio establecer los headers),
-    // realmente no hace falta este "setHeaders"
-    public void setHeaders(List<String> headers) {
-        this.headers = headers;
-    }
     public List<Double> getColumnAt(int index) {
         List<Double> column = new ArrayList<>();
         for (Row row : rows) {

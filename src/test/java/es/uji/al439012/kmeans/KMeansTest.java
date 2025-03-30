@@ -1,5 +1,5 @@
 // TODO: Remplazar <nombre> por el nombre de tu paquete
-package es.uji.al439012.KMeans;
+package es.uji.al439012.kmeans;
 
 // TODO: Pon los imports especificos a tu proyecto
 import es.uji.al439012.table.TableWithLabels;
