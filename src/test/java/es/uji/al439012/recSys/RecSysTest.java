@@ -11,12 +11,14 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import es.uji.al439012.table.Table;
 import es.uji.al439012.algorithm.Algorithm;
 import es.uji.al439012.csv.CSV;
 import es.uji.al439012.KMeans.KMeans;
 import es.uji.al439012.KNN.KNN;
 import es.uji.al439012.excepciones.LikedItemNotFoundException;
+import es.uji.al439012.RecSys.RecSys;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -83,6 +85,39 @@ class RecSysTest {
         void estimate_likedItemNotFound() {
             assertThrows(LikedItemNotFoundException.class, () -> recSys.recommend("Inside Ouuuut", numRecommendations));
         }
+
+        @Test
+        @DisplayName("RecSys[KNN] - estimate: número de recomendaciones negativo")
+        void estimate_negativeRecommendations() {
+            assertThrows(IllegalArgumentException.class, () -> recSys.recommend("The Weekend", -1));
+        }
+
+        @Test
+        @DisplayName("RecSys[KNN] - estimate: número de recomendaciones cero")
+        void estimate_zeroRecommendations() throws LikedItemNotFoundException {
+            List<String> recommendations = recSys.recommend("The Weekend", 0);
+            assertTrue(recommendations.isEmpty());
+        }
+
+        @Test
+        @DisplayName("RecSys[KNN] - estimate: número de recomendaciones mayor que items disponibles")
+        void estimate_tooManyRecommendations() throws LikedItemNotFoundException {
+            List<String> recommendations = recSys.recommend("The Weekend", 1000);
+            assertTrue(recommendations.size() <= testTable.getRowCount() - 1);
+        }
+
+
+        @Test
+        @DisplayName("RecSys[KNN] - estimate: item vacío")
+        void estimate_emptyItem() {
+            assertThrows(LikedItemNotFoundException.class, () -> recSys.recommend("", numRecommendations));
+        }
+
+        @Test
+        @DisplayName("RecSys[KNN] - estimate: item null")
+        void estimate_nullItem() {
+            assertThrows(LikedItemNotFoundException.class, () -> recSys.recommend(null, numRecommendations));
+        }
     }
 
     @Nested
@@ -127,6 +162,39 @@ class RecSysTest {
         @DisplayName("RecSys[KMeans] - estimate: liked item not found")
         void estimate_likedItemNotFound() {
             assertThrows(LikedItemNotFoundException.class, () -> recSys.recommend("Inside Ouuuut", numRecommendations));
+        }
+
+        @Test
+        @DisplayName("RecSys[KMeans] - estimate: número de recomendaciones negativo")
+        void estimate_negativeRecommendations() {
+            assertThrows(IllegalArgumentException.class, () -> recSys.recommend("The Weekend", -1));
+        }
+
+        @Test
+        @DisplayName("RecSys[KMeans] - estimate: número de recomendaciones cero")
+        void estimate_zeroRecommendations() throws LikedItemNotFoundException {
+            List<String> recommendations = recSys.recommend("The Weekend", 0);
+            assertTrue(recommendations.isEmpty());
+        }
+
+        @Test
+        @DisplayName("RecSys[KMeans] - estimate: número de recomendaciones mayor que items disponibles")
+        void estimate_tooManyRecommendations() throws LikedItemNotFoundException {
+            List<String> recommendations = recSys.recommend("The Weekend", 1000);
+            assertTrue(recommendations.size() <= testTable.getRowCount() - 1);
+        }
+
+
+        @Test
+        @DisplayName("RecSys[KMeans] - estimate: item vacío")
+        void estimate_emptyItem() {
+            assertThrows(LikedItemNotFoundException.class, () -> recSys.recommend("", numRecommendations));
+        }
+
+        @Test
+        @DisplayName("RecSys[KMeans] - estimate: item null")
+        void estimate_nullItem() {
+            assertThrows(LikedItemNotFoundException.class, () -> recSys.recommend(null, numRecommendations));
         }
     }
 

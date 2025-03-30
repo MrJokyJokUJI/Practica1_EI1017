@@ -1,4 +1,4 @@
-package es.uji.al439012.recSys;
+package es.uji.al439012.RecSys;
 import es.uji.al439012.algorithm.Algorithm;
 import es.uji.al439012.table.Table;
 import es.uji.al439012.excepciones.LikedItemNotFoundException;
@@ -31,9 +31,13 @@ public class RecSys {
         if (!itemClassMap.containsKey(nameLikedItem)) {
             throw new LikedItemNotFoundException("Item not found: " + nameLikedItem);
         }
+        if (numRecommendations < 0){
+            throw new IllegalArgumentException();
+        }
 
         int likedClass = itemClassMap.get(nameLikedItem);
         List<String> recommendations = new ArrayList<>();
+        if (numRecommendations == 0) return recommendations;
 
         for (String item : testItemNames) {
             if (!item.equals(nameLikedItem) && itemClassMap.get(item) == likedClass) {

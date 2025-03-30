@@ -80,7 +80,6 @@ public class KMeans implements Algorithm<Table> {
                 nearest = i;
             }
         }
-        System.out.println("Punto asignado al cluster: " + nearest);
         return nearest;
     }
 
