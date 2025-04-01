@@ -7,3 +7,4 @@ public interface Algorithm<T> {
     Integer estimate(List<Double> data
     );
 }
+
