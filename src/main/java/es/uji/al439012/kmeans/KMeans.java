@@ -1,23 +1,43 @@
 package es.uji.al439012.kmeans;
 
+import es.uji.al439012.algorithm.EuclideanDistance;
 import es.uji.al439012.excepciones.InvalidClusterNumberException;
 import es.uji.al439012.table.Table;
 import es.uji.al439012.algorithm.Algorithm;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import es.uji.al439012.algorithm.Algorithm;
+import es.uji.al439012.algorithm.Distance;
 
 public class KMeans implements Algorithm<Table> {
     private int numClusters;
     private int numIterations;
     private Random random;
     private List<List<Double>> centroids;
+    private Distance distance;
+
+    public KMeans(int numClusters, int numIterations, long seed, Distance distance) {
+        this.numClusters = numClusters;
+        this.numIterations = numIterations;
+        this.random = new Random(seed);
+        this.centroids = new ArrayList<>();
+        this.distance = distance;
+    }
 
     public KMeans(int numClusters, int numIterations, long seed) {
         this.numClusters = numClusters;
         this.numIterations = numIterations;
         this.random = new Random(seed);
         this.centroids = new ArrayList<>();
+        this.distance = new EuclideanDistance();
+    }
+
+    public void setDistance(Distance distance) {
+        if (distance == null) {
+            throw new IllegalArgumentException("El objeto Distance no puede ser null");
+        }
+        this.distance = distance;
     }
 
     public void train(Table data) throws InvalidClusterNumberException {
@@ -79,7 +99,7 @@ public class KMeans implements Algorithm<Table> {
     private int getNearestCentroid(List<Double> dataPoint) {
         return IntStream.range(0, centroids.size())
                 .boxed()
-                .min(Comparator.comparingDouble(i -> euclideanDistance(dataPoint, centroids.get(i))))
+                .min(Comparator.comparingDouble(i ->  distance.calculateDistance(dataPoint, centroids.get(i))))
                 .orElse(0);
     }
 

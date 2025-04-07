@@ -3,6 +3,7 @@ package es.uji.al439012.kmeans;
 
 // TODO: Pon los imports especificos a tu proyecto
 import es.uji.al439012.table.TableWithLabels;
+import es.uji.al439012.algorithm.EuclideanDistance;
 import es.uji.al439012.excepciones.InvalidClusterNumberException;
 import java.io.IOException;
 import es.uji.al439012.csv.CSV;
