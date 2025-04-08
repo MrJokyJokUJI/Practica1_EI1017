@@ -11,7 +11,7 @@ public class CSVUnlabeledFileReader extends FileReader<Table> {
     private List<String> headers;
     private List<Row> rows;
 
-    public CSVUnlabeledFileReader() {
+    public CSVUnlabeledFileReader(String s) {
         rows = new ArrayList<>();
     }
 

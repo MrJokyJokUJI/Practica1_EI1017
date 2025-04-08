@@ -11,6 +11,10 @@ import es.uji.al439012.readertemplate.ReaderTemplate;
 public class CSVLabeledFileReader extends FileReader<TableWithLabels> {
     private TableWithLabels table;
 
+    public CSVLabeledFileReader(String s) {
+        super();
+    }
+
     @Override
     public void processHeaders(String headersLine) {
         List<String> headers = new ArrayList<>(Arrays.asList(headersLine.split(",")));
