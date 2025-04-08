@@ -12,8 +12,9 @@ import org.junit.platform.suite.api.SuiteDisplayName;
         "es.uji.al439012.KNN",
         "es.uji.al439012.table",
         "es.uji.al439012.KMeans",
-        "es.uji.al439012.recSys"
-
+        "es.uji.al439012.recSys",
+        "es.uji.al439012.readertemplate",
+        "es.uji.al439012.algorithm"
 })
 @IncludeClassNamePatterns(".*Test")
 public class TestSuite {
