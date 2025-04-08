@@ -8,6 +8,10 @@ import es.uji.al439012.table.Table;
 
 public abstract class FileReader<T extends Table> extends ReaderTemplate<T> {
 
+    public FileReader(String source) {
+        super(source);
+    }
+
     protected Scanner scanner;
 
     @Override

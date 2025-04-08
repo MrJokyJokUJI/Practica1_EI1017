@@ -10,7 +10,12 @@ public abstract class ReaderTemplate<T extends Table> {
     public abstract boolean hasMoreData();
     public abstract String getNextData();
 
-    public final T readTableFromSource(String source) {
+    protected String source;
+
+    public ReaderTemplate(String source) {
+        this.source = source;
+    }
+    public final T readTableFromSource() {
         openSource(source);
         processHeaders(getNextData());
         while (hasMoreData()) {

@@ -12,7 +12,7 @@ public class CSVLabeledFileReader extends FileReader<TableWithLabels> {
     private TableWithLabels table;
 
     public CSVLabeledFileReader(String s) {
-        super();
+        super(s);
     }
 
     @Override
