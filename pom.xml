@@ -40,7 +40,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <executable>${java.home}/bin/java</executable>
-                    <mainClass>es.uji.al439012.main.Main</mainClass>
+                    <mainClass>es.uji.al439012.main.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
