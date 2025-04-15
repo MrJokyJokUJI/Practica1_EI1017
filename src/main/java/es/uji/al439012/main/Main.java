@@ -1,38 +1,23 @@
 package es.uji.al439012.main;
 
-import es.uji.al439012.csv.CSV;
-import es.uji.al439012.table.Table;
-import es.uji.al439012.table.TableWithLabels;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
-import java.io.IOException;
-public class Main {
+public class Main extends Application {
     public static void main(String[] args) {
-        try {
-            CSV csv = new CSV();
-            Table table = csv.readTable("miles_dollars.csv");
+        launch(args);
+    }
 
-            System.out.println("Tabla cargada desde CSV:");
-            table.showTable();
-
-            System.out.println("\nPrimera fila: " + table.getRowAt(0));
-            System.out.println("Columna Miles: " + table.getColumnAt(0));
-            System.out.println("Columna Dollars: " + table.getColumnAt(1));
-
-            CSV csvLabel = new CSV();
-            TableWithLabels tableLabel = csv.readTableWithLabels("iris.csv");
-
-            System.out.println("Tabla cargada desde CSV:");
-            table.showTable();
-
-            System.out.println("\nPrimera fila: " + tableLabel.getRowAt(0));
-            System.out.println("Columna sepal length: " + tableLabel.getColumnAt(0));
-            System.out.println("Columna sepal width: " + tableLabel.getColumnAt(1));
-            System.out.println("Columna petal length: " + tableLabel.getColumnAt(2));
-            System.out.println("Columna petal width: " + tableLabel.getColumnAt(3));
-
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo CSV: " + e.getMessage());
-        }
+    @Override
+    public void start(Stage stage) throws Exception {
+        Label label = new Label("hola mundo");
+        Scene scene = new Scene(label, 400, 300);
+        stage.setScene(scene);
+        stage.setTitle("Mi App JavaFX");
+        stage.show();
     }
 }
+
 
