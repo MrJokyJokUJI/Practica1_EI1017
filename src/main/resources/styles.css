@@ -1,0 +1,43 @@
+/* styles.css */
+
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #E4F2E7;
+}
+
+
+.recommendations-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+}
+
+.button {
+    -fx-background-color: #387373;
+    -fx-text-fill: white;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 5;
+    -fx-font-weight: bold;
+}
+
+
+.combo-box {
+    -fx-pref-width: 200px;
+}
+
+.label {
+    -fx-font-size: 15px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif; /* Fuente más relajada */
+    -fx-text-fill: #2c3e50; /* Gris suave para el texto */
+    -fx-background-color: #fdfdfd; /* Casi blanco */
+    -fx-border-color: #97A6A0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 6 12; /* Espaciado interno */
+}
+
+
