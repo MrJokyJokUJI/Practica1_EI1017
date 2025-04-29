@@ -1,3 +1,5 @@
+// Modifica LeftPanel.java
+
 package es.uji.al439012.gui.vista;
 
 import javafx.scene.control.Label;
@@ -12,6 +14,7 @@ import java.io.IOException;
 
 public class LeftPanel {
     private final VBox panel;
+    private final ListView<String> songList; // Agrega esta línea
 
     public LeftPanel() {
         panel = new VBox(15);
@@ -22,7 +25,7 @@ public class LeftPanel {
         titleLabel.setMaxWidth(Double.MAX_VALUE);
         titleLabel.getStyleClass().add("label");
 
-        ListView<String> songList = new ListView<>();
+        songList = new ListView<>(); // Modifica esta línea
         loadSongsFromCSV(songList);
         songList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -47,5 +50,9 @@ public class LeftPanel {
 
     public VBox getPanel() {
         return panel;
+    }
+
+    public ListView<String> getSongList() { // Agrega este método
+        return songList;
     }
 }

@@ -1,5 +1,7 @@
+// Modifica RightPanel.java
 package es.uji.al439012.gui.vista;
 
+import es.uji.al439012.gui.controlador.PanelController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -7,16 +9,17 @@ import javafx.scene.layout.VBox;
 
 public class RightPanel {
     private final VBox panel;
+    private final TextArea recommendationsArea;
 
     public RightPanel() {
         panel = new VBox(15);
         panel.setAlignment(javafx.geometry.Pos.TOP_CENTER);
-        panel.setPadding(new Insets(15,15,15,15));
+        panel.setPadding(new Insets(15, 15, 15, 15));
 
         Label title = new Label("RECOMENDACIONES");
         title.getStyleClass().add("label");
 
-        TextArea recommendationsArea = new TextArea();
+        recommendationsArea = new TextArea();
         recommendationsArea.getStyleClass().add("recommendations-area");
         recommendationsArea.setEditable(false);
         recommendationsArea.setPrefHeight(300);
@@ -27,5 +30,9 @@ public class RightPanel {
 
     public VBox getPanel() {
         return panel;
+    }
+
+    public void setRecommendations(String text) {
+        recommendationsArea.setText(text);
     }
 }

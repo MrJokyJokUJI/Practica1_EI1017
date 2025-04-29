@@ -1,3 +1,5 @@
+// Modifica MainView.java
+
 package es.uji.al439012.gui.vista;
 
 import javafx.geometry.Insets;
@@ -9,10 +11,10 @@ public class MainView {
 
     public MainView() {
         root = new HBox(20);
-        root.setPadding(new Insets(20,20,20,20));
+        root.setPadding(new Insets(20, 20, 20, 20));
 
         LeftPanel leftPanel = new LeftPanel();
-        CenterPanel centerPanel = new CenterPanel();
+        CenterPanel centerPanel = new CenterPanel(leftPanel); // Modifica esta línea
         RightPanel rightPanel = new RightPanel();
 
         HBox.setHgrow(leftPanel.getPanel(), Priority.ALWAYS);
