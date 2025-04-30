@@ -1,7 +1,6 @@
 // Modifica RightPanel.java
 package es.uji.al439012.gui.vista;
 
-import es.uji.al439012.gui.controlador.PanelController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;

@@ -6,7 +6,9 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-public class MainView {
+import java.util.List;
+
+public class MainView implements Vista{
     private final HBox root;
 
     public MainView() {
@@ -28,5 +30,30 @@ public class MainView {
 
     public HBox getView() {
         return root;
+    }
+
+    @Override
+    public List<String> getSelectedSongs() {
+        return null;
+    }
+
+    @Override
+    public String getRecommendationType() {
+        return null;
+    }
+
+    @Override
+    public String getDistanceType() {
+        return null;
+    }
+
+    @Override
+    public int getNumberOfRecommendations() {
+        return 0;
+    }
+
+    @Override
+    public void showRecommendations(List<String> recommendations) {
+
     }
 }
