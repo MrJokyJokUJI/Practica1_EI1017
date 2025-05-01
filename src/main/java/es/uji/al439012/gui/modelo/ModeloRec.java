@@ -1,6 +1,6 @@
-package es.uji.al439012.modelo; // O el paquete que designes para el modelo
+package es.uji.al439012.gui.modelo; // O el paquete que designes para el modelo
 
-import es.uji.al439012.gui.modelo.Modelo;
+import es.uji.al439012.gui.vista.Vista;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModeloRec implements Modelo {
+
+    private Vista vista;
 
     private List<String> songTitles; // Almacena la lista de canciones una vez cargada
 
@@ -32,6 +34,11 @@ public class ModeloRec implements Modelo {
         recommendations.add("Canción recomendada 1 basada en " + selectedSongs.get(0));
         recommendations.add("Canción recomendada 2 basada en " + selectedSongs.get(0));
         return recommendations; // Placeholder
+    }
+
+    @Override
+    public void setVista(Vista vista) {
+        this.vista = vista;
     }
 
 

@@ -5,15 +5,16 @@ package es.uji.al439012.gui.vista;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.collections.ObservableList; // Importa ObservableList
-import javafx.event.ActionEvent; // Importa ActionEvent
 
 public class CenterPanel {
-    private final VBox panel;
-    private final LeftPanel leftPanel; // Agrega esta línea
+    private VBox panel;
+    private Button botonRec; // Agrega esta variable de instancia
+    private ComboBox<String> opcionesRec; // Agrega variables para los ComboBox y Spinner si el controlador necesita sus valores
+    private ComboBox<String> opcionesDis;
+    private Spinner<Integer> spinner;
 
-    public CenterPanel(LeftPanel leftPanel) { // Modifica el constructor
-        this.leftPanel = leftPanel; // Inicializa leftPanel
+
+    public CenterPanel() {
         panel = new VBox(15);
         panel.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         panel.setPadding(new Insets(15, 15, 15, 15));
@@ -33,11 +34,11 @@ public class CenterPanel {
         panelOpciones.getColumnConstraints().addAll(col1, col2);
 
         Label tipoRec = new Label("Tipo recomendación");
-        ComboBox<String> opcionesRec = new ComboBox<>();
+        opcionesRec = new ComboBox<>(); // Inicializa la variable de instancia
         opcionesRec.getItems().addAll("Similitudes", "Genero");
 
         Label tipoDis = new Label("Tipo distáncia");
-        ComboBox<String> opcionesDis = new ComboBox<>();
+        opcionesDis = new ComboBox<>(); // Inicializa la variable de instancia
         opcionesDis.getItems().addAll("Euclediana", "Manhattan");
 
         tipoRec.setMaxWidth(Double.MAX_VALUE);
@@ -52,25 +53,33 @@ public class CenterPanel {
         panelOpciones.setHgap(10);
         panelOpciones.setVgap(10);
 
-        Spinner<Integer> spinner = new Spinner<>(1, 10, 3);
+        spinner = new Spinner<>(1, 10, 3); // Inicializa la variable de instancia
         spinner.setEditable(true);
 
-        Button recommendButton = new Button("MOSTRAR RECOMENDACIONES");
-        recommendButton.setOnAction(this::handleRecommendButtonAction); // Modifica esta línea
+        botonRec = new Button("MOSTRAR RECOMENDACIONES"); // Inicializa la variable de instancia
 
-        panel.getChildren().addAll(title, spinner, panelOpciones, recommendButton);
-    }
-
-    private void handleRecommendButtonAction(ActionEvent event) { // Agrega este método
-        ListView<String> songList = leftPanel.getSongList();
-        ObservableList<String> selectedSongs = songList.getSelectionModel().getSelectedItems();
-        System.out.println("Canciones seleccionadas:");
-        for (String song : selectedSongs) {
-            System.out.println("- " + song);
-        }
+        panel.getChildren().addAll(title, spinner, panelOpciones, botonRec);
     }
 
     public VBox getPanel() {
         return panel;
     }
+
+    // --- Métodos para obtener los controles ---
+    public Button getBotonRec() {
+        return botonRec;
+    }
+
+    public ComboBox<String> getOpcionesRec() {
+        return opcionesRec;
+    }
+
+    public ComboBox<String> getOpcionesDis() {
+        return opcionesDis;
+    }
+
+    public Spinner<Integer> getSpinner() {
+        return spinner;
+    }
+
 }

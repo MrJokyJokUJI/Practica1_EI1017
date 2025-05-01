@@ -8,13 +8,12 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.List; // Importa List
+// Eliminamos las importaciones de BufferedReader, FileReader, IOException
 
 public class LeftPanel {
     private final VBox panel;
-    private final ListView<String> songList; // Agrega esta línea
+    private final ListView<String> songList;
 
     public LeftPanel() {
         panel = new VBox(15);
@@ -25,8 +24,8 @@ public class LeftPanel {
         titleLabel.setMaxWidth(Double.MAX_VALUE);
         titleLabel.getStyleClass().add("label");
 
-        songList = new ListView<>(); // Modifica esta línea
-        loadSongsFromCSV(songList);
+        songList = new ListView<>();
+        // Eliminamos la llamada a loadSongsFromCSV(songList);
         songList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         VBox.setVgrow(songList, Priority.ALWAYS);
@@ -35,24 +34,22 @@ public class LeftPanel {
         panel.getChildren().addAll(titleLabel, songList);
     }
 
-    private void loadSongsFromCSV(ListView<String> songList) {
-        String path = "C:/Users/Vicent/IdeaProjects/Practica1_EI1017/src/main/resources/recommender/songs_test_names.csv";
-
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                songList.getItems().add(line.trim());
-            }
-        } catch (IOException e) {
-            System.err.println("Error cargando canciones: " + e.getMessage());
-        }
-    }
+    // Eliminamos el método private void loadSongsFromCSV(...)
 
     public VBox getPanel() {
         return panel;
     }
 
-    public ListView<String> getSongList() { // Agrega este método
+    public ListView<String> getSongList() {
         return songList;
     }
+
+    // --- Método para establecer la lista de canciones (llamado desde MainView) ---
+    public void setSongsList(List<String> songs) {
+        songList.getItems().clear(); // Limpiar la lista actual por si acaso
+        if (songs != null) {
+            songList.getItems().addAll(songs); // Agregar las nuevas canciones a la ListView
+        }
+    }
+    // ----------------------------------------------------------------------------
 }

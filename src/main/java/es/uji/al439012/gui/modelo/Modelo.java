@@ -29,6 +29,8 @@ public interface Modelo {
      */
     List<String> getRecommendations(List<String> selectedSongs, String recommendationType, String distanceType, int numberOfRecommendations) throws Exception;
 
+    void setVista(Vista vista);
+
     // --- Patrón Observador (Opcional pero recomendado para MVC) ---
     // El modelo podría implementar un mecanismo para que las Vistas (u Observadores) se registren
     // y sean notificadas de cambios en los datos[cite: 14].
