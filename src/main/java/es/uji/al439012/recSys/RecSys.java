@@ -1,4 +1,4 @@
-package es.uji.al439012.RecSys;
+package es.uji.al439012.recSys;
 import es.uji.al439012.algorithm.Algorithm;
 import es.uji.al439012.table.Table;
 import es.uji.al439012.excepciones.LikedItemNotFoundException;

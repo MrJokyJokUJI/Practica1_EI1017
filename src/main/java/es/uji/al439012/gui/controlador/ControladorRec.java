@@ -43,7 +43,7 @@ public class ControladorRec implements Controlador {
             return;
         }
 
-        List<String> cancionesSeleccionadas = vista.getSelectedSongs();
+        String cancionSeleccionada = vista.getSelectedSong();
         String tipoRecomendacion = vista.getRecommendationType();
         String tipoDistancia = vista.getDistanceType();
         int numRecomendaciones = vista.getNumberOfRecommendations();
@@ -51,11 +51,8 @@ public class ControladorRec implements Controlador {
 
         // 2. Mostrar la información por pantalla (consola)
         System.out.println("Controlador: Información recibida de la Vista:");
-        System.out.println("  Canciones seleccionadas:");
-        if (cancionesSeleccionadas != null && !cancionesSeleccionadas.isEmpty()) {
-            for (String cancion : cancionesSeleccionadas) {
-                System.out.println("  - " + cancion);
-            }
+        if (cancionSeleccionada != null && !cancionSeleccionada.isEmpty()) {
+            System.out.println("  Cancion seleccionada: " + cancionSeleccionada);
         } else {
             System.out.println("  (Ninguna canción seleccionada)");
         }
@@ -67,32 +64,22 @@ public class ControladorRec implements Controlador {
         System.out.println("----------------------------------------------");
 
         // --- Lógica futura para interactuar con el Modelo ---
-        /*
+
         // 3. Pasar datos al Modelo para que haga el cálculo
-        if (modelo == null) {
-             System.err.println("Error: Modelo no establecido en el Controlador.");
-             // Podrías notificar a la vista para mostrar un mensaje de error al usuario
-             // vista.showMessage("Error interno: el sistema de recomendación no está disponible.");
-             return;
-        }
-
         try {
-             List<String> recomendaciones = modelo.getRecommendations(
-                 cancionesSeleccionadas,
-                 tipoRecomendacion,
-                 tipoDistancia,
-                 numRecomendaciones
-             );
-
-             // 4. Pedirle a la Vista que muestre el resultado
-             vista.showRecommendations(recomendaciones);
-
+            List<String> recomendaciones = modelo.getRecommendations(
+                cancionSeleccionada,
+                tipoRecomendacion,
+                tipoDistancia,
+                numRecomendaciones
+            );
         } catch (Exception e) {
-             System.err.println("Error al calcular recomendaciones: " + e.getMessage());
-             // Notificar a la vista para mostrar un mensaje de error al usuario
-             // vista.showMessage("Ocurrió un error al generar recomendaciones: " + e.getMessage());
+            throw new RuntimeException(e);
         }
-        */
+
+        // 4. Pedirle a la Vista que muestre el resultado
+        //     vista.showRecommendations(recomendaciones);
+
     }
 
     @Override

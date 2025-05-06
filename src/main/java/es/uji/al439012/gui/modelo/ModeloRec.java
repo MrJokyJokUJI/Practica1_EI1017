@@ -26,13 +26,13 @@ public class ModeloRec implements Modelo {
     }
 
     @Override
-    public List<String> getRecommendations(List<String> selectedSongs, String recommendationType, String distanceType, int numberOfRecommendations) throws Exception {
+    public List<String> getRecommendations(String selectedSong, String recommendationType, String distanceType, int numberOfRecommendations) {
         // Aquí iría la lógica para llamar a tu sistema de recomendación (RecSys, etc.)
         // ... implementación ...
         System.out.println("Modelo: Calculando recomendaciones..."); // Placeholder
         List<String> recommendations = new ArrayList<>();
-        recommendations.add("Canción recomendada 1 basada en " + selectedSongs.get(0));
-        recommendations.add("Canción recomendada 2 basada en " + selectedSongs.get(0));
+        recommendations.add("Canción recomendada 1 basada en " + selectedSong);
+        recommendations.add("Canción recomendada 2 basada en " + selectedSong);
         return recommendations; // Placeholder
     }
 
@@ -42,10 +42,9 @@ public class ModeloRec implements Modelo {
     }
 
 
-    // --- Lógica de carga movida desde LeftPanel ---
     private List<String> loadSongsFromCSV() {
         List<String> loadedSongs = new ArrayList<>();
-        String path = "C:/Users/Vicent/IdeaProjects/Practica1_EI1017/src/main/resources/recommender/songs_test_names.csv"; // Idealmente, esta ruta no debería estar hardcodeada aquí
+        String path = "src/main/resources/recommender/songs_test_names.csv"; // Idealmente, esta ruta no debería estar hardcodeada aquí
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;

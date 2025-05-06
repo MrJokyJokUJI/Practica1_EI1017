@@ -88,18 +88,10 @@ public class MainView implements Vista {
 
     // --- Métodos de la interfaz Vista ---
     @Override
-    public List<String> getSelectedSongs() {
-        List<String> listaSeleccionada = new ArrayList<>();
+    public String getSelectedSong() {
         ListView<String> songList = leftPanel.getSongList();
-        ObservableList<String> selectedSongs = songList.getSelectionModel().getSelectedItems();
-
-        // No es necesario imprimir aquí, el Controlador lo hará si lo necesita
-        // System.out.println("Canciones seleccionadas:");
-        for (String song : selectedSongs) {
-            // System.out.println("- " + song); // Evitar impresión aquí, la Vista solo provee datos
-            listaSeleccionada.add(song);
-        }
-        return listaSeleccionada;
+        String selectedSongs = songList.getSelectionModel().getSelectedItem();
+        return selectedSongs;
     }
 
     @Override

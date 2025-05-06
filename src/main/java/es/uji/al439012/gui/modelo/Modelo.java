@@ -27,7 +27,7 @@ public interface Modelo {
      * @return Una lista con los nombres de las canciones recomendadas.
      * @throws Exception Si ocurre un error durante el cálculo.
      */
-    List<String> getRecommendations(List<String> selectedSongs, String recommendationType, String distanceType, int numberOfRecommendations) throws Exception;
+    List<String> getRecommendations(String selectedSongs, String recommendationType, String distanceType, int numberOfRecommendations) throws Exception;
 
     void setVista(Vista vista);
 

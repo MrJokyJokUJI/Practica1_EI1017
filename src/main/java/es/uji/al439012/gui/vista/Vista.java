@@ -17,7 +17,7 @@ public interface Vista {
      *
      * @return Una lista de nombres de canciones seleccionadas.
      */
-    List<String> getSelectedSongs();
+    String getSelectedSong();
 
     /**
      * Obtiene el tipo de recomendación seleccionado por el usuario (p.ej., "Similitudes", "Genero").

@@ -18,7 +18,7 @@ import es.uji.al439012.csv.CSV;
 import es.uji.al439012.kmeans.KMeans;
 import es.uji.al439012.knn.KNN;
 import es.uji.al439012.excepciones.LikedItemNotFoundException;
-import es.uji.al439012.RecSys.RecSys;
+import es.uji.al439012.recSys.RecSys;
 
 import static org.junit.jupiter.api.Assertions.*;
 
