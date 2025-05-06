@@ -1,6 +1,11 @@
 package es.uji.al439012.gui.modelo; // O el paquete que designes para el modelo
 
+import es.uji.al439012.algorithm.Algorithm;
+import es.uji.al439012.csv.CSV;
 import es.uji.al439012.gui.vista.Vista;
+import es.uji.al439012.knn.KNN;
+import es.uji.al439012.recSys.RecSys;
+import es.uji.al439012.table.Table;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,6 +19,14 @@ public class ModeloRec implements Modelo {
 
     private List<String> songTitles; // Almacena la lista de canciones una vez cargada
 
+    private String separator = System.getProperty("file.separator");
+    private String songsFolder = "recommender";
+
+    private RecSys recSys;
+    private Algorithm algorithm;
+
+    private Table trainTable;
+
     // Podrías cargar las canciones en el constructor o la primera vez que se piden
 
     @Override
@@ -26,9 +39,17 @@ public class ModeloRec implements Modelo {
     }
 
     @Override
-    public List<String> getRecommendations(String selectedSong, String recommendationType, String distanceType, int numberOfRecommendations) {
+    public List<String> getRecommendations(String selectedSong, String recommendationType, String distanceType, int numberOfRecommendations) throws Exception {
         // Aquí iría la lógica para llamar a tu sistema de recomendación (RecSys, etc.)
         // ... implementación ...
+
+        trainTable = new CSV().readTableWithLabels(songsFolder + separator + "songs_train.csv");
+
+        algorithm = new KNN();
+        recSys = new RecSys(algorithm);
+        recSys.train(trainTable);
+
+
         System.out.println("Modelo: Calculando recomendaciones..."); // Placeholder
         List<String> recommendations = new ArrayList<>();
         recommendations.add("Canción recomendada 1 basada en " + selectedSong);

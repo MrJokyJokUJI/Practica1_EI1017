@@ -1,0 +1,6 @@
+1-Añadir el pdf que nos falto subir de la práctica3
+2-Separar las interfaces de las vistas y los controladores(foto bellón)
+3-Explicar el MVC a botis
+4-Hacer todos los putíssimos metodos del Controlador y Moelo
+5-Cambiar desde el controlador como se envian los datos al modelo
+6-Corregir todo lo de las prácticas anteriores !SI NO LO HACEMOS BAJA NOTA!!!!
