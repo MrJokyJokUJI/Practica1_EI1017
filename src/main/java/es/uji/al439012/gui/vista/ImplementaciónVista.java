@@ -52,7 +52,7 @@ public class ImplementaciónVista implements InformaVista,InterrogaVista {
         Button recommendButton = centerPanel.getBotonRec(); // Obtener el botón del CenterPanel usando el getter
         recommendButton.setOnAction(event -> {
             if (this.controlador != null) { // Usar this.controlador
-                this.controlador.botonRecPulsado(); // Llama al método del Controlador
+                this.controlador.anyadeEntrada(); // Llama al método del Controlador
             } else {
                 System.err.println("Error: Controlador no establecido en MainView al pulsar botón.");
             }

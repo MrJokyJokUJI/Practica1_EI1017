@@ -8,5 +8,6 @@ public interface InformaVista {
 
     void nuevaEntrada();
 
+    public void setControlador(Controlador controlador);
 
 }

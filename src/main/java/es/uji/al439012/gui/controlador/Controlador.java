@@ -14,7 +14,7 @@ public interface Controlador {
      * El controlador obtendrá los datos necesarios de la vista, pedirá las recomendaciones al modelo
      * y actualizará la vista con los resultados.
      */
-    void botonRecPulsado();
+    void anyadeEntrada();
 
     /**
      * Se podría llamar cuando cambia la selección de canciones en la vista,

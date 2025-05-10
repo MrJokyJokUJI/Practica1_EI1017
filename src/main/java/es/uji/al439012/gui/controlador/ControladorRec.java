@@ -33,7 +33,7 @@ public class ControladorRec implements Controlador {
 
 
     @Override
-    public void botonRecPulsado() {
+    public void anyadeEntrada() {
         System.out.println("--- Controlador: Botón de recomendación pulsado ---");
 
         // 1. Obtener datos de la Vista usando los métodos de la interfaz Vista
