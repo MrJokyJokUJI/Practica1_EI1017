@@ -4,8 +4,7 @@ import es.uji.al439012.gui.controlador.Controlador;
 import es.uji.al439012.gui.controlador.ControladorRec;
 import es.uji.al439012.gui.modelo.Modelo;
 import es.uji.al439012.gui.modelo.ModeloRec; // Asegúrate de que esta importación es correcta
-import es.uji.al439012.gui.vista.MainView; // Asegúrate de esta importación
-import es.uji.al439012.gui.vista.Vista; // Asegúrate de esta importación
+import es.uji.al439012.gui.vista.ImplementaciónVista; // Asegúrate de esta importación
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -27,7 +26,7 @@ public class App extends Application {
         // 3. Crear la Vista, pasando el Modelo y el Controlador
         // ¡IMPORTANTE! Usar el constructor que recibe Modelo y Controlador
         // Ahora MainView requiere el Modelo y el Controlador en su constructor
-        Vista vistaPrincipal = new MainView(modelo, controlador); // Pasa modelo y controlador
+        ImplementaciónVista vistaPrincipal = new ImplementaciónVista(modelo, controlador); // Pasa modelo y controlador
 
         // 4. Conectar el Controlador con la Vista y el Modelo
         // setVista y setModelo en el controlador para que tenga referencias

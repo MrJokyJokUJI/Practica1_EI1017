@@ -1,6 +1,6 @@
 package es.uji.al439012.gui.modelo; // Asumiendo un paquete 'modelo'
 
-import es.uji.al439012.gui.vista.Vista;
+import es.uji.al439012.gui.vista.ImplementaciónVista;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public interface Modelo {
      */
     List<String> getRecommendations(String selectedSongs, String recommendationType, String distanceType, int numberOfRecommendations) throws Exception;
 
-    void setVista(Vista vista);
+    void setVista(ImplementaciónVista vista);
 
     // --- Patrón Observador (Opcional pero recomendado para MVC) ---
     // El modelo podría implementar un mecanismo para que las Vistas (u Observadores) se registren

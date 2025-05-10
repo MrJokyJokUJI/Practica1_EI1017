@@ -1,7 +1,7 @@
 package es.uji.al439012.gui.controlador;
 
 import es.uji.al439012.gui.modelo.Modelo;
-import es.uji.al439012.gui.vista.Vista;
+import es.uji.al439012.gui.vista.ImplementaciónVista;
 
 /**
  * Interfaz para el Controlador en el patrón MVC.
@@ -25,7 +25,7 @@ public interface Controlador {
     // Se podrían añadir otros métodos para manejar diferentes eventos de la UI
     // (cambio en ComboBox, Spinner, etc.) si se requiere una lógica de controlador específica.
 
-    void setVista(Vista vista);
+    void setVista(ImplementaciónVista vista);
 
     void setModelo(Modelo modelo);
 }

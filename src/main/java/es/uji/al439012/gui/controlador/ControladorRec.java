@@ -3,14 +3,14 @@
 package es.uji.al439012.gui.controlador;
 
 import es.uji.al439012.gui.modelo.Modelo;
-import es.uji.al439012.gui.vista.Vista;
+import es.uji.al439012.gui.vista.ImplementaciónVista;
 
 import java.util.List; // Importar List
 
 public class ControladorRec implements Controlador {
 
     private Modelo modelo; // Guarda la referencia al Modelo
-    private Vista vista; // Guarda la referencia a la Vista
+    private ImplementaciónVista vista; // Guarda la referencia a la Vista
 
     // --- Constructor sin argumentos ---
     public ControladorRec() {
@@ -66,7 +66,7 @@ public class ControladorRec implements Controlador {
         // --- Lógica futura para interactuar con el Modelo ---
 
         // 3. Pasar datos al Modelo para que haga el cálculo
-        try {
+        /*try {
             List<String> recomendaciones = modelo.getRecommendations(
                 cancionSeleccionada,
                 tipoRecomendacion,
@@ -75,7 +75,7 @@ public class ControladorRec implements Controlador {
             );
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         // 4. Pedirle a la Vista que muestre el resultado
         //     vista.showRecommendations(recomendaciones);
@@ -95,7 +95,7 @@ public class ControladorRec implements Controlador {
 
     // Métodos para establecer la Vista y el Modelo (necesarios si no usas el constructor con argumentos para inyección completa)
     @Override
-    public void setVista(Vista vista) {
+    public void setVista(ImplementaciónVista vista) {
         this.vista = vista;
     }
 

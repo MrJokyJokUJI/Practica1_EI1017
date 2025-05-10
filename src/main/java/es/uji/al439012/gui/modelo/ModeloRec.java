@@ -2,7 +2,7 @@ package es.uji.al439012.gui.modelo; // O el paquete que designes para el modelo
 
 import es.uji.al439012.algorithm.Algorithm;
 import es.uji.al439012.csv.CSV;
-import es.uji.al439012.gui.vista.Vista;
+import es.uji.al439012.gui.vista.ImplementaciónVista;
 import es.uji.al439012.knn.KNN;
 import es.uji.al439012.recSys.RecSys;
 import es.uji.al439012.table.Table;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ModeloRec implements Modelo {
 
-    private Vista vista;
+    private ImplementaciónVista vista;
 
     private List<String> songTitles; // Almacena la lista de canciones una vez cargada
 
@@ -57,8 +57,7 @@ public class ModeloRec implements Modelo {
         return recommendations; // Placeholder
     }
 
-    @Override
-    public void setVista(Vista vista) {
+    public void setVista(ImplementaciónVista vista) {
         this.vista = vista;
     }
 

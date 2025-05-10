@@ -4,21 +4,19 @@ package es.uji.al439012.gui.vista;
 
 import es.uji.al439012.gui.controlador.Controlador;
 import es.uji.al439012.gui.modelo.Modelo;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainView implements Vista {
+public class ImplementaciónVista implements InformaVista,InterrogaVista {
 
     private Controlador controlador;
-    private Modelo modelo; // Guarda la referencia al Modelo
+    private Modelo modelo;
 
     private final HBox root;
 
@@ -28,26 +26,23 @@ public class MainView implements Vista {
     private final RightPanel rightPanel;
 
     // --- Constructor Modificado para recibir Modelo y Controlador ---
-    public MainView(Modelo modelo, Controlador controlador) {
+    public ImplementaciónVista(Modelo modelo, Controlador controlador) {
         if (modelo == null) {
             throw new IllegalArgumentException("El modelo no puede ser nulo en MainView");
         }
-        // No validamos si el controlador es null aquí si decides setearlo después.
-        // if (controlador == null) { ... }
 
-        this.modelo = modelo; // Asigna la referencia al Modelo
-        this.controlador = controlador; // Asigna la referencia al Controlador
+        this.modelo = modelo;
+        this.controlador = controlador;
 
         root = new HBox(20);
         root.setPadding(new Insets(20, 20, 20, 20));
 
-        // Crear y ASIGNAR a las variables de instancia
-        this.leftPanel = new LeftPanel(); // LeftPanel ya no carga solo
+
+        this.leftPanel = new LeftPanel();
         this.centerPanel = new CenterPanel();
         this.rightPanel = new RightPanel();
 
         // --- Cargar las canciones en el LeftPanel usando el Modelo ---
-        // Ahora this.modelo tiene una instancia válida porque la recibimos en el constructor
         List<String> songNames = this.modelo.getAllSongTitles(); // Obtener la lista de canciones del Modelo
         this.leftPanel.setSongsList(songNames); // Pasar la lista de canciones al LeftPanel para que las muestre
         // -------------------------------------------------------------
@@ -74,13 +69,6 @@ public class MainView implements Vista {
 
         root.getStyleClass().add("root");
     }
-
-    // Elimina el constructor sin argumentos:
-     /*
-     public MainView() {
-        // ... código antiguo ...
-     }
-     */
 
     public HBox getView() {
         return root;
@@ -128,16 +116,24 @@ public class MainView implements Vista {
 
     // Los métodos setControlador y setModelo son necesarios porque la interfaz Vista los requiere.
     // Sin embargo, la inyección principal de dependencias ocurre ahora en el constructor.
-    @Override
     public void setControlador(Controlador controlador) {
         this.controlador = controlador;
         // Si el listener del botón se configurara aquí en lugar del constructor, iría aquí.
     }
 
-    @Override
     public void setModelo(Modelo modelo) {
         this.modelo = modelo;
         // Si la lista de canciones se cargara aquí (ej. por un evento de cambio en el modelo), iría aquí.
+    }
+
+    @Override
+    public void entradaActualCambiada() {
+        return;
+    }
+
+    @Override
+    public void nuevaEntrada() {
+        return;
     }
     // ------------------------------------------
 }
