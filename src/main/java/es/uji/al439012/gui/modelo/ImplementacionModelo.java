@@ -13,11 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModeloRec implements Modelo {
+public class ImplementacionModelo implements CabioModelo, InterrogaModelo {
 
     private ImplementaciónVista vista;
 
-    private List<String> songTitles; // Almacena la lista de canciones una vez cargada
 
     private String separator = System.getProperty("file.separator");
     private String songsFolder = "recommender";
@@ -26,35 +25,42 @@ public class ModeloRec implements Modelo {
     private Algorithm algorithm;
 
     private Table trainTable;
+    private Table testTable;
+    private List<String> testItemNames;
 
     // Podrías cargar las canciones en el constructor o la primera vez que se piden
 
     @Override
     public List<String> getAllSongTitles() {
-        if (songTitles == null) { // Carga "lazy" si aún no se han cargado
-            songTitles = loadSongsFromCSV();
+        if (testItemNames == null) { // Carga "lazy" si aún no se han cargado
+            testItemNames = loadSongsFromCSV();
         }
         // Devuelve una copia para evitar modificaciones externas no deseadas
-        return new ArrayList<>(songTitles);
+        return new ArrayList<>(testItemNames);
     }
 
     @Override
-    public List<String> getRecommendations(String selectedSong, String recommendationType, String distanceType, int numberOfRecommendations) throws Exception {
+    public List<String> getRecomendacionesDeModelo(String selectedSong, Algorithm algorithm, int numberOfRecommendations) throws Exception {
         // Aquí iría la lógica para llamar a tu sistema de recomendación (RecSys, etc.)
         // ... implementación ...
+        setUp();
 
+
+
+
+        System.out.println("Modelo: Calculando recomendaciones..."); // Placeholder
+        List<String> recommendations = recSys.recommend(selectedSong,numberOfRecommendations);
+        return recommendations; // Placeholder
+    }
+
+    void setUp() throws Exception {
         trainTable = new CSV().readTableWithLabels(songsFolder + separator + "songs_train.csv");
+        testTable = new CSV().readTableWithLabels(songsFolder + separator + "songs_test.csv");
 
         algorithm = new KNN();
         recSys = new RecSys(algorithm);
         recSys.train(trainTable);
-
-
-        System.out.println("Modelo: Calculando recomendaciones..."); // Placeholder
-        List<String> recommendations = new ArrayList<>();
-        recommendations.add("Canción recomendada 1 basada en " + selectedSong);
-        recommendations.add("Canción recomendada 2 basada en " + selectedSong);
-        return recommendations; // Placeholder
+        recSys.initialise(testTable, testItemNames);
     }
 
     public void setVista(ImplementaciónVista vista) {

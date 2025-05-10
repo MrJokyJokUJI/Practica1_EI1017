@@ -2,14 +2,19 @@
 
 package es.uji.al439012.gui.controlador;
 
-import es.uji.al439012.gui.modelo.Modelo;
+import es.uji.al439012.algorithm.Algorithm;
+import es.uji.al439012.algorithm.Distance;
+import es.uji.al439012.gui.modelo.CabioModelo;
+import es.uji.al439012.gui.modelo.ImplementacionModelo;
 import es.uji.al439012.gui.vista.ImplementaciónVista;
+import es.uji.al439012.gui.vista.InformaVista;
+import es.uji.al439012.gui.vista.InterrogaVista;
 
-import java.util.List; // Importar List
+import java.util.List;
 
 public class ControladorRec implements Controlador {
 
-    private Modelo modelo; // Guarda la referencia al Modelo
+    private CabioModelo modelo; // Guarda la referencia al Modelo
     private ImplementaciónVista vista; // Guarda la referencia a la Vista
 
     // --- Constructor sin argumentos ---
@@ -33,7 +38,7 @@ public class ControladorRec implements Controlador {
 
 
     @Override
-    public void anyadeEntrada() {
+    public void anyadeEntradaAlModelo() throws Exception {
         System.out.println("--- Controlador: Botón de recomendación pulsado ---");
 
         // 1. Obtener datos de la Vista usando los métodos de la interfaz Vista
@@ -66,19 +71,18 @@ public class ControladorRec implements Controlador {
         // --- Lógica futura para interactuar con el Modelo ---
 
         // 3. Pasar datos al Modelo para que haga el cálculo
-        /*try {
-            List<String> recomendaciones = modelo.getRecommendations(
-                cancionSeleccionada,
-                tipoRecomendacion,
-                tipoDistancia,
-                numRecomendaciones
-            );
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
+
+        Distance distancia = DisFactory.createDistance(tipoDistancia);
+        Algorithm<?> algoritmo = AlgoFactory.createAlgorithm(tipoRecomendacion, distancia);
+
+
+
+
+            List<String> recomendaciones = modelo.getRecomendacionesDeModelo(cancionSeleccionada,algoritmo,numRecomendaciones);
+
 
         // 4. Pedirle a la Vista que muestre el resultado
-        //     vista.showRecommendations(recomendaciones);
+             vista.showRecommendations(recomendaciones);
 
     }
 
@@ -100,7 +104,7 @@ public class ControladorRec implements Controlador {
     }
 
     @Override
-    public void setModelo(Modelo modelo) {
+    public void setModelo(CabioModelo modelo) {
         this.modelo = modelo;
     }
 }

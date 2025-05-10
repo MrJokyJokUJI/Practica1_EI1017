@@ -3,6 +3,8 @@
 package es.uji.al439012.gui.vista;
 
 import es.uji.al439012.gui.controlador.Controlador;
+import es.uji.al439012.gui.modelo.ImplementacionModelo;
+import es.uji.al439012.gui.modelo.InterrogaModelo;
 import es.uji.al439012.gui.modelo.Modelo;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -16,7 +18,7 @@ import java.util.List;
 public class ImplementaciónVista implements InformaVista,InterrogaVista {
 
     private Controlador controlador;
-    private Modelo modelo;
+    private InterrogaModelo modelo;
 
     private final HBox root;
 
@@ -26,7 +28,7 @@ public class ImplementaciónVista implements InformaVista,InterrogaVista {
     private final RightPanel rightPanel;
 
     // --- Constructor Modificado para recibir Modelo y Controlador ---
-    public ImplementaciónVista(Modelo modelo, Controlador controlador) {
+    public ImplementaciónVista(ImplementacionModelo modelo, Controlador controlador) {
         if (modelo == null) {
             throw new IllegalArgumentException("El modelo no puede ser nulo en MainView");
         }
@@ -52,7 +54,11 @@ public class ImplementaciónVista implements InformaVista,InterrogaVista {
         Button recommendButton = centerPanel.getBotonRec(); // Obtener el botón del CenterPanel usando el getter
         recommendButton.setOnAction(event -> {
             if (this.controlador != null) { // Usar this.controlador
-                this.controlador.anyadeEntrada(); // Llama al método del Controlador
+                try {
+                    this.controlador.anyadeEntradaAlModelo(); // Llama al método del Controlador
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 System.err.println("Error: Controlador no establecido en MainView al pulsar botón.");
             }
@@ -143,6 +149,7 @@ public class ImplementaciónVista implements InformaVista,InterrogaVista {
         rightPanel.setRecommendations(sb.toString()); // Asumimos que RightPanel tiene un método setRecommendations
     }
 
+
     // Los métodos setControlador y setModelo son necesarios porque la interfaz Vista los requiere.
     // Sin embargo, la inyección principal de dependencias ocurre ahora en el constructor.
     public void setControlador(Controlador controlador) {
@@ -150,19 +157,9 @@ public class ImplementaciónVista implements InformaVista,InterrogaVista {
         // Si el listener del botón se configurara aquí en lugar del constructor, iría aquí.
     }
 
-    public void setModelo(Modelo modelo) {
+    public void setModelo(InterrogaModelo modelo) {
         this.modelo = modelo;
         // Si la lista de canciones se cargara aquí (ej. por un evento de cambio en el modelo), iría aquí.
-    }
-
-    @Override
-    public void entradaActualCambiada() {
-        return;
-    }
-
-    @Override
-    public void nuevaEntrada() {
-        return;
     }
     // ------------------------------------------
 }

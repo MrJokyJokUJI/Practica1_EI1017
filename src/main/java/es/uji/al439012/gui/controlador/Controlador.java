@@ -1,5 +1,6 @@
 package es.uji.al439012.gui.controlador;
 
+import es.uji.al439012.gui.modelo.CabioModelo;
 import es.uji.al439012.gui.modelo.Modelo;
 import es.uji.al439012.gui.vista.ImplementaciónVista;
 
@@ -14,7 +15,7 @@ public interface Controlador {
      * El controlador obtendrá los datos necesarios de la vista, pedirá las recomendaciones al modelo
      * y actualizará la vista con los resultados.
      */
-    void anyadeEntrada();
+    void anyadeEntradaAlModelo() throws Exception;
 
     /**
      * Se podría llamar cuando cambia la selección de canciones en la vista,
@@ -27,5 +28,5 @@ public interface Controlador {
 
     void setVista(ImplementaciónVista vista);
 
-    void setModelo(Modelo modelo);
+    void setModelo(CabioModelo modelo);
 }

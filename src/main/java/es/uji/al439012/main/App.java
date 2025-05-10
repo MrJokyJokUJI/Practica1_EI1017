@@ -2,8 +2,7 @@ package es.uji.al439012.main;
 
 import es.uji.al439012.gui.controlador.Controlador;
 import es.uji.al439012.gui.controlador.ControladorRec;
-import es.uji.al439012.gui.modelo.Modelo;
-import es.uji.al439012.gui.modelo.ModeloRec; // Asegúrate de que esta importación es correcta
+import es.uji.al439012.gui.modelo.ImplementacionModelo; // Asegúrate de que esta importación es correcta
 import es.uji.al439012.gui.vista.ImplementaciónVista; // Asegúrate de esta importación
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,7 +16,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         // 1. Crear el Modelo
-        Modelo modelo = new ModeloRec();
+        ImplementacionModelo modelo = new ImplementacionModelo();
 
         // 2. Crear el Controlador
         // Usando el constructor sin argumentos

@@ -1,5 +1,6 @@
 package es.uji.al439012.gui.vista;
 
+import es.uji.al439012.gui.modelo.InterrogaModelo;
 import es.uji.al439012.gui.modelo.Modelo;
 import javafx.scene.layout.HBox;
 
@@ -38,9 +39,7 @@ public interface InterrogaVista {
      */
     int getNumberOfRecommendations();
 
-    void showRecommendations(List<String> recommendations);
-
     public HBox getView();
 
-    public void setModelo(Modelo modelo);
+    public void setModelo(InterrogaModelo modelo);
 }
