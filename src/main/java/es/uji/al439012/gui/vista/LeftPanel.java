@@ -20,13 +20,12 @@ public class LeftPanel {
         panel.setAlignment(javafx.geometry.Pos.TOP_CENTER);
         panel.setPadding(new javafx.geometry.Insets(15));
 
-        Label titleLabel = new Label("SELECCIONA TUS FAVORITAS");
+        Label titleLabel = new Label("SELECCIONA TU FAVORITAS");
         titleLabel.setMaxWidth(Double.MAX_VALUE);
         titleLabel.getStyleClass().add("label");
 
         songList = new ListView<>();
         // Eliminamos la llamada a loadSongsFromCSV(songList);
-        songList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         VBox.setVgrow(songList, Priority.ALWAYS);
         songList.setPrefWidth(350);

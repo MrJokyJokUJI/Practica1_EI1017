@@ -68,7 +68,36 @@ public class ImplementaciónVista implements InformaVista,InterrogaVista {
         root.getChildren().addAll(leftPanel.getPanel(), centerPanel.getPanel(), rightPanel.getPanel());
 
         root.getStyleClass().add("root");
+
+
+        // Listeners para los cambios de selección
+        leftPanel.getSongList().getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            actualizarEstadoBotonRecomendaciones();
+        });
+
+        centerPanel.getOpcionesRec().valueProperty().addListener((obs, oldValue, newValue) -> {
+            actualizarEstadoBotonRecomendaciones();
+        });
+
+        centerPanel.getOpcionesDis().valueProperty().addListener((obs, oldValue, newValue) -> {
+            actualizarEstadoBotonRecomendaciones();
+        });
+
+        // Establecer el estado inicial del botón
+        actualizarEstadoBotonRecomendaciones();
+        // --- FIN: Lógica para habilitar/deshabilitar el botón de recomendación ---
     }
+
+    // --- INICIO: Nuevo método para actualizar el estado del botón ---
+    private void actualizarEstadoBotonRecomendaciones() {
+        boolean cancionSeleccionada = leftPanel.getSongList().getSelectionModel().getSelectedItem() != null;
+        boolean algoritmoSeleccionado = centerPanel.getOpcionesRec().getValue() != null && !centerPanel.getOpcionesRec().getValue().isEmpty();
+        boolean distanciaSeleccionada = centerPanel.getOpcionesDis().getValue() != null && !centerPanel.getOpcionesDis().getValue().isEmpty();
+
+        // El botón se habilita solo si todas las condiciones se cumplen
+        centerPanel.getBotonRec().setDisable(!(cancionSeleccionada && algoritmoSeleccionado && distanciaSeleccionada));
+    }
+
 
     public HBox getView() {
         return root;
